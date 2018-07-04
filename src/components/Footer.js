@@ -13,19 +13,15 @@ export default () => (
     </Grid.Column>
     <Grid.Column width={4} textAlign='right'>
       <List horizontal link size='small' verticalAlign='middle'>
-
         <List.Item as='a' href='mailto:crstffr@gmail.com'>
           <Icon name='mail'/>
         </List.Item>
-
         <List.Item as='a' href='https://github.com/crstffr' target='_blank'>
           <List.Icon name='github'/>
         </List.Item>
-
         <List.Item as='a' href='https://www.linkedin.com/in/crstffr/' target='_blank'>
           <List.Icon name='linkedin'/>
         </List.Item>
-
       </List>
     </Grid.Column>
   </Grid>

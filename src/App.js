@@ -15,7 +15,7 @@ export default class App extends React.Component {
             <UserLayout org={match.params.org} user={match.params.user}/>
           )}/>
           <Route render={() => (
-            <Redirect to={`/${defaultOrg}`}/>
+            <Redirect to={`/${defaultOrg}/`}/>
           )}/>
         </Switch>
       </HashRouter>

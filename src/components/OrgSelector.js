@@ -6,7 +6,7 @@ import Options from '../options';
 class OrgSelector extends React.Component {
 
   onChange(e, {value}) {
-    this.props.history.push(`/${value}`);
+    this.props.history.push(`/${value}/`);
   }
 
   render() {
