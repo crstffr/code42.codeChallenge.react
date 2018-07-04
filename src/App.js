@@ -9,7 +9,7 @@ export default class App extends React.Component {
     let defaultOrg = Options.orgs[0].value;
 
     return (
-      <HashRouter basename={`${process.env.PUBLIC_URL}/`}>
+      <HashRouter>
         <Switch>
           <Route path="/:org/:user?" render={({match}) => (
             <UserLayout org={match.params.org} user={match.params.user}/>

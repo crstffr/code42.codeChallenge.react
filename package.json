@@ -2,7 +2,7 @@
   "name": "code42.react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://crstffr.github.io/code42.react/",
+  "homepage": "https://cmc42.now.sh",
   "dependencies": {
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -17,10 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "devDependencies": {
-    "gh-pages": "^1.2.0"
+    "deploy": "now deploy ./build/ --public --name cmc42 --alias cmc42.now.sh",
+    "publish": "now alias"
   }
 }

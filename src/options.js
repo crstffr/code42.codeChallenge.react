@@ -1,3 +1,6 @@
+
+let path = process.env.PUBLIC_URL;
+
 export default {
   orgs: [
     {
@@ -5,7 +8,7 @@ export default {
       value: 'code42',
       image: {
         size: 'mini',
-        src: '/icons/code42.png'
+        src: `${path}/icons/code42.png`
       }
     },
     {
@@ -13,7 +16,7 @@ export default {
       value: 'github',
       image: {
         size: 'mini',
-        src: '/icons/github.png'
+        src: `${path}/icons/github.png`
       }
     },
     {
@@ -21,7 +24,7 @@ export default {
       value: 'google',
       image: {
         size: 'mini',
-        src: '/icons/google.png'
+        src: `${path}/icons/google.png`
       }
     },
     {
@@ -29,7 +32,7 @@ export default {
       value: 'facebook',
       image: {
         size: 'mini',
-        src: '/icons/facebook.png'
+        src: `${path}/icons/facebook.png`
       }
     }
   ]
