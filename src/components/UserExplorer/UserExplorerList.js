@@ -1,19 +1,12 @@
 import React from 'react';
-import {Grid, Header, List} from 'semantic-ui-react';
+import {List} from 'semantic-ui-react';
 import UserExplorerListItem from './UserExplorerListItem';
+import UserExplorerListEmpty from './UserExplorerListEmpty';
 
 export default ({users}) => {
 
   if (!users.length) {
-    return (
-      <Grid>
-        <Grid.Column verticalAlign='middle' textAlign='center'>
-          <Header as='h4' icon textAlign='center'>
-            <Header.Content>No Users Found</Header.Content>
-          </Header>
-        </Grid.Column>
-      </Grid>
-    )
+    return <UserExplorerListEmpty/>
   }
 
   let items = users.map((user) => (
@@ -25,5 +18,4 @@ export default ({users}) => {
       {items}
     </List>
   )
-
 }

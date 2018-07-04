@@ -1,42 +1,14 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-import {Message, Header, Statistic, Grid, Image, Item, List} from 'semantic-ui-react';
+import {Message, Statistic, Image, Item, List} from 'semantic-ui-react';
+import UserExplorerDetailEmpty from './UserExplorerDetailEmpty';
 import UserExplorerDetailRepo from './UserExplorerDetailRepo';
-import Options from '../../options';
 import Utils from '../../utils/utils';
 
 let UserExplorerDetail = ({user, match}) => {
 
-  let currentOrgImage = '';
-  let currentOrg = match.params.org;
-
-  Options.orgs.filter(org => {
-    if (org.value === currentOrg) {
-      currentOrgImage = org.image.src;
-    }
-    return org;
-  });
-
   if (!user.login) {
-
-    let verticalAlign = {
-      top: '50%',
-      left: '50%',
-      position: 'absolute',
-      marginLeft: '-60px',
-      marginTop: '-40px'
-    };
-
-    return (
-      <Grid className='UserExplorerDetailEmpty'>
-        <Grid.Column verticalAlign='middle' textAlign='center'>
-          <Header as='h2' icon textAlign='center' style={verticalAlign}>
-            <Image src={currentOrgImage} className='icon medium'/>
-            <Header.Content>Select User</Header.Content>
-          </Header>
-        </Grid.Column>
-      </Grid>
-    )
+    return <UserExplorerDetailEmpty/>
   }
 
   let email = (user.email)
@@ -57,7 +29,6 @@ let UserExplorerDetail = ({user, match}) => {
 
   return (
     <Item.Group>
-
       <Item>
         <Item.Image as={Image} src={user.avatar_url} size='small' rounded bordered />
         <Item.Content>
@@ -71,7 +42,6 @@ let UserExplorerDetail = ({user, match}) => {
           {location}
         </Item.Content>
       </Item>
-
       <Item>
         <Item.Content>
           <Message>
@@ -92,7 +62,6 @@ let UserExplorerDetail = ({user, match}) => {
           </Message>
         </Item.Content>
       </Item>
-
       <List divided relaxed='very'>
         {repos}
       </List>

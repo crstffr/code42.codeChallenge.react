@@ -13,16 +13,13 @@ export default ({repo}) => {
   return (
     <List.Item key={repo.id} className='UserExplorerDetailRepo'>
       <List.Content>
-
         <List.Header>
           <a href={repo.html_url}>{repo.full_name}</a>
           {language}
         </List.Header>
-
         <List.Description>
           {repo.description}
         </List.Description>
-
         <List.Description>
           <Grid>
             <Grid.Row>
