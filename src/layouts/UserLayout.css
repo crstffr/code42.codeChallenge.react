@@ -1,0 +1,24 @@
+.UserLayout {
+  height: 100vh;
+}
+
+.UserExplorerContainer {
+  height: 65vh;
+  margin-top: -5vh;
+}
+
+.UserExplorer {
+  height: 100%;
+}
+
+.UserExplorer .column {
+  height: 100%;
+}
+
+.UserExplorerListContainer {
+  overflow: auto;
+}
+
+.UserExplorerListContainer::-webkit-scrollbar {
+  display: none;
+}
