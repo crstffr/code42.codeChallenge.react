@@ -5,7 +5,11 @@ const API_PREFIX = 'https://api.github.com/';
 
 class UserService {
 
-  wait = false;
+  wait = true;
+
+  setArtificialWait(bool) {
+    this.wait = bool;
+  }
 
   pause(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -42,7 +46,6 @@ class UserService {
 
     return await resp.json();
   }
-
 }
 
 export default new UserService();

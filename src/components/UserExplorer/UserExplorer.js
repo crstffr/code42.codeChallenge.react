@@ -7,24 +7,25 @@ import { Grid, Dimmer, Loader } from 'semantic-ui-react'
 export default class extends React.Component {
 
   state = {
+    org: '',
     user: {},
     users: [],
-    loadingUser: true,
-    loadingUsers: true
+    loadingUsers: true,
+    loadingDetail: true
   };
 
   fetchUsers(org) {
     this.setState({loadingUsers: true});
     return UserService.fetchUsersInOrg(org)
       .then((users) => {
-        this.setState({users});
+        this.setState({org, users});
       }).finally(() => {
         this.setState({loadingUsers: false});
       });
   }
 
   fetchDetails(user) {
-    this.setState({loadingUser: true});
+    this.setState({loadingDetail: true});
     return Promise.all([
       UserService.fetchUserProfile(user),
       UserService.fetchUserRepos(user)
@@ -32,13 +33,17 @@ export default class extends React.Component {
       user.repos = repos;
       this.setState({user});
     }).finally(() => {
-      this.setState({loadingUser: false});
+      this.setState({loadingDetail: false});
     });
   }
 
-  componentWillReceiveProps({user}) {
-    if (user === this.state.user.login) { return; }
-    this.fetchDetails(user);
+  componentWillReceiveProps({user, org}) {
+    if (org !== this.state.org) {
+      this.fetchUsers(org);
+    }
+    if (user !== this.state.user.login) {
+      this.fetchDetails(user);
+    }
   }
 
   componentWillMount() {
@@ -48,8 +53,8 @@ export default class extends React.Component {
 
   render() {
 
-    let listContainer = "UserExplorerListContainer";
-    let detailContainer = "UserExplorerDetailContainer";
+    let listClassName = 'UserExplorerListContainer';
+    let detailClassName = 'UserExplorerDetailContainer';
 
     let loader = (
       <Dimmer active inverted>
@@ -58,18 +63,22 @@ export default class extends React.Component {
     );
 
     let userList = (!this.state.loadingUsers)
-      ? <UserList users={this.state.users} />
+      ? <UserList org={this.state.org} users={this.state.users} />
       : loader;
 
-    let userDetail = (!this.state.loadingUser)
+    let userDetail = (!this.state.loadingDetail)
       ? <UserDetail user={this.state.user} />
       : loader;
 
     return (
       <Grid columns={2} divided>
         <Grid.Row stretched>
-          <Grid.Column width={6} className={listContainer}>{userList}</Grid.Column>
-          <Grid.Column width={10} className={detailContainer}>{userDetail}</Grid.Column>
+          <Grid.Column width={6} className={listClassName}>
+            {userList}
+          </Grid.Column>
+          <Grid.Column width={10} className={detailClassName}>
+            {userDetail}
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     )

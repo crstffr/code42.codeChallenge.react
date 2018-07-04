@@ -1,0 +1,17 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background: #eee;
+}
+
+html,
+body,
+#root {
+  height: 100vh;
+}
+
+body .ui.grid {
+  margin: 0;
+}

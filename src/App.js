@@ -1,17 +1,21 @@
 import React from 'react';
 import {HashRouter, Switch, Route, Redirect} from 'react-router-dom';
-import UserLayout from '../layouts/UserLayout'
+import UserLayout from './layouts/UserLayout'
+import Options from './options';
 
 export default class App extends React.Component {
   render () {
+
+    let defaultOrg = Options.orgs[0].value;
+
     return (
       <HashRouter>
         <Switch>
-          <Route path="/users/:user?" render={({match}) => (
-            <UserLayout user={match.params.user}/>
+          <Route path="/:org/:user?" render={({match}) => (
+            <UserLayout org={match.params.org} user={match.params.user}/>
           )}/>
           <Route render={() => (
-            <Redirect to="/users"/>
+            <Redirect to={`/${defaultOrg}`}/>
           )}/>
         </Switch>
       </HashRouter>

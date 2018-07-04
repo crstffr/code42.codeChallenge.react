@@ -4,25 +4,35 @@
 
 .UserExplorerContainer {
   height: 65vh;
-  margin-top: -5vh;
+  margin-top: -10vh;
 }
 
 .UserExplorer {
   height: 100%;
 }
 
-.UserExplorer .column {
+.UserExplorer .column,
+.UserExplorer .column .row {
   height: 100%;
 }
 
 .UserExplorerListContainer,
 .UserExplorerDetailContainer {
   overflow: auto;
+  overflow-scrolling: auto;
 }
 
 .UserExplorerListContainer::-webkit-scrollbar,
 .UserExplorerDetailContainer::-webkit-scrollbar {
   display: none;
+}
+
+.UserExplorerDetailEmpty .middle .header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -40px;
+  margin-left: -62px;
 }
 
 .UserExplorerDetailRepo .content {

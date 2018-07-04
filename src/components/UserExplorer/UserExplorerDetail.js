@@ -1,16 +1,37 @@
 import React from 'react';
-import {Message, Header, Statistic, Grid, Image, Icon, Item, List} from 'semantic-ui-react';
+import {withRouter} from 'react-router-dom';
+import {Message, Header, Statistic, Grid, Image, Item, List} from 'semantic-ui-react';
 import UserExplorerDetailRepo from './UserExplorerDetailRepo';
+import Options from '../../options';
 import Utils from '../../utils/utils';
 
-export default ({user}) => {
+let UserExplorerDetail = ({user, match}) => {
+
+  let currentOrgImage = '';
+  let currentOrg = match.params.org;
+
+  Options.orgs.filter(org => {
+    if (org.value === currentOrg) {
+      currentOrgImage = org.image.src;
+    }
+    return org;
+  });
 
   if (!user.login) {
+
+    let verticalAlign = {
+      top: '50%',
+      left: '50%',
+      position: 'absolute',
+      marginLeft: '-60px',
+      marginTop: '-40px'
+    };
+
     return (
-      <Grid>
+      <Grid className='UserExplorerDetailEmpty'>
         <Grid.Column verticalAlign='middle' textAlign='center'>
-          <Header as='h2' icon textAlign='center'>
-            <Icon name='github' color='black' circular />
+          <Header as='h2' icon textAlign='center' style={verticalAlign}>
+            <Image src={currentOrgImage} className='icon medium'/>
             <Header.Content>Select User</Header.Content>
           </Header>
         </Grid.Column>
@@ -77,4 +98,6 @@ export default ({user}) => {
       </List>
     </Item.Group>
   )
-}
+};
+
+export default withRouter(UserExplorerDetail);

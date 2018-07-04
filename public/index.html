@@ -6,7 +6,6 @@
     <link rel="icon" href="./favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" />
-    <link rel="stylesheet" href="./style.css"/>
   </head>
   <body>
     <noscript>
@@ -17,5 +16,15 @@
            style="position: absolute; top: 0; right: 0; border: 0;"
            alt="Fork me on GitHub"></a>
     <div id="root"></div>
+    <!-- Inline Polyfills for Immediate Access -->
+    <script language="JavaScript" type="application/javascript">
+      if (!Promise.prototype.finally) {
+        Promise.prototype.finally = function (onFinally) {
+          return this.then(
+            res => Promise.resolve(onFinally()).then(() => res), /* onRejected */
+            err => Promise.resolve(onFinally()).then(() => { throw err; }));
+        };
+      }
+    </script>
   </body>
 </html>

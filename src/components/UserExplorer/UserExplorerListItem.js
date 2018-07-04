@@ -1,19 +1,25 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { Image, List } from 'semantic-ui-react'
 
-export default class extends React.Component {
+class UserExplorerListItem extends React.Component {
   render() {
+
+    let orgName = this.props.match.params.org;
+    let userName = this.props.user.login;
+    let userImage = this.props.user.avatar_url;
+
     return (
       <List.Item as={NavLink}
-                 to={`/users/${this.props.user.login}`}
+                 to={`/${orgName}/${userName}`}
                  className='UserExplorerListItem'>
-        <Image size='mini' circular src={this.props.user.avatar_url} />
+        <Image size='mini' circular src={userImage} />
         <List.Content>
-          <List.Header>{this.props.user.login}</List.Header>
+          <List.Header>{userName}</List.Header>
         </List.Content>
       </List.Item>
     )
   }
-
 }
+
+export default withRouter(UserExplorerListItem);
