@@ -15,6 +15,11 @@ export default class {
     return await this._fetch(`/users/${username}`) || {};
   }
 
+  static async fetchUserRepos(username) {
+    if (!username) { return []; }
+    return await this._fetch(`/users/${username}/repos?page=1&sort=updated`) || [];
+  }
+
   static async _fetch(path) {
 
     let url = urljoin(API_PREFIX, path);

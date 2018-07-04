@@ -20,22 +20,24 @@ export default class extends React.Component {
     return result;
   }
 
-  async fetchUser(user) {
+  async fetchDetails(user) {
     this.setState({loadingUser: true});
-    let result = await UserService.fetchUserProfile(user);
+    let details = await UserService.fetchUserProfile(user);
+    details.repos = await UserService.fetchUserRepos(user);
+    console.log(details);
     this.setState({loadingUser: false});
-    return result;
+    return details;
   }
 
   async componentWillReceiveProps({user}) {
     this.setState({
-      user: await this.fetchUser(user)
+      user: await this.fetchDetails(user)
     });
   }
 
   async componentWillMount() {
     this.setState({
-      user: await this.fetchUser(this.props.user),
+      user: await this.fetchDetails(this.props.user),
       users: await this.fetchUsers(this.props.org)
     });
   }
@@ -62,8 +64,8 @@ export default class extends React.Component {
     return (
       <Grid columns={2} centered divided>
         <Grid.Row stretched>
-          <Grid.Column className={listContainer}>{userList}</Grid.Column>
-          <Grid.Column className={detailContainer}>{userDetail}</Grid.Column>
+          <Grid.Column width={6} className={listContainer}>{userList}</Grid.Column>
+          <Grid.Column width={10} className={detailContainer}>{userDetail}</Grid.Column>
         </Grid.Row>
       </Grid>
     )

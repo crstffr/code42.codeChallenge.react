@@ -7,9 +7,9 @@ import './UserLayout.css';
 export default class extends React.Component {
   render () {
     return (
-      <Grid className='UserLayout' verticalAlign='middle'>
+      <Grid columns='equal' verticalAlign='middle' className='UserLayout'>
 
-        <Grid.Column width={3}/>
+        <Grid.Column/>
 
         <Grid.Column width={10} className='UserExplorerContainer'>
 
@@ -21,7 +21,7 @@ export default class extends React.Component {
 
         </Grid.Column>
 
-        <Grid.Column width={3}/>
+        <Grid.Column/>
       </Grid>
     )
 

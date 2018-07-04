@@ -15,10 +15,33 @@
   height: 100%;
 }
 
-.UserExplorerListContainer {
+.UserExplorerListContainer,
+.UserExplorerDetailContainer {
   overflow: auto;
 }
 
-.UserExplorerListContainer::-webkit-scrollbar {
+.UserExplorerListContainer::-webkit-scrollbar,
+.UserExplorerDetailContainer::-webkit-scrollbar {
   display: none;
+}
+
+.UserExplorerDetailRepo .content {
+  width: 100%;
+}
+
+.UserExplorerDetailRepo .description {
+  padding: 2px 0 0;
+  line-height: 1.25em;
+}
+
+.UserExplorerDetailRepo .ui.label.languageLabel {
+  margin-left: 8px;
+  padding: 2px 4px;
+  vertical-align: top;
+  float: right;
+}
+
+.UserExplorerDetailRepo .ui.grid .row,
+.UserExplorerDetailRepo .ui.grid .row .column {
+  padding: 0;
 }
