@@ -13,33 +13,37 @@ export default class extends React.Component {
     loadingUsers: true
   };
 
-  async fetchUsers(org) {
+  fetchUsers(org) {
     this.setState({loadingUsers: true});
-    let result = await UserService.fetchUsersInOrg(org);
-    this.setState({loadingUsers: false});
-    return result;
+    return UserService.fetchUsersInOrg(org)
+      .then((users) => {
+        this.setState({users});
+      }).finally(() => {
+        this.setState({loadingUsers: false});
+      });
   }
 
-  async fetchDetails(user) {
+  fetchDetails(user) {
     this.setState({loadingUser: true});
-    let details = await UserService.fetchUserProfile(user);
-    details.repos = await UserService.fetchUserRepos(user);
-    console.log(details);
-    this.setState({loadingUser: false});
-    return details;
-  }
-
-  async componentWillReceiveProps({user}) {
-    this.setState({
-      user: await this.fetchDetails(user)
+    return Promise.all([
+      UserService.fetchUserProfile(user),
+      UserService.fetchUserRepos(user)
+    ]).then(([user, repos]) => {
+      user.repos = repos;
+      this.setState({user});
+    }).finally(() => {
+      this.setState({loadingUser: false});
     });
   }
 
-  async componentWillMount() {
-    this.setState({
-      user: await this.fetchDetails(this.props.user),
-      users: await this.fetchUsers(this.props.org)
-    });
+  componentWillReceiveProps({user}) {
+    if (user === this.state.user.login) { return; }
+    this.fetchDetails(user);
+  }
+
+  componentWillMount() {
+    this.fetchUsers(this.props.org);
+    this.fetchDetails(this.props.user);
   }
 
   render() {
@@ -62,7 +66,7 @@ export default class extends React.Component {
       : loader;
 
     return (
-      <Grid columns={2} centered divided>
+      <Grid columns={2} divided>
         <Grid.Row stretched>
           <Grid.Column width={6} className={listContainer}>{userList}</Grid.Column>
           <Grid.Column width={10} className={detailContainer}>{userDetail}</Grid.Column>

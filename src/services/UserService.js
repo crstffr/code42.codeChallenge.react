@@ -3,24 +3,30 @@ import urljoin from 'url-join';
 
 const API_PREFIX = 'https://api.github.com/';
 
-export default class {
+class UserService {
 
-  static async fetchUsersInOrg(org) {
+  wait = false;
+
+  pause(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async fetchUsersInOrg(org) {
     if (!org) { return []; }
     return await this._fetch(`/orgs/${org}/public_members`) || [];
   }
 
-  static async fetchUserProfile(username) {
+  async fetchUserProfile(username) {
     if (!username) { return {}; }
     return await this._fetch(`/users/${username}`) || {};
   }
 
-  static async fetchUserRepos(username) {
+  async fetchUserRepos(username) {
     if (!username) { return []; }
     return await this._fetch(`/users/${username}/repos?page=1&sort=updated`) || [];
   }
 
-  static async _fetch(path) {
+  async _fetch(path) {
 
     let url = urljoin(API_PREFIX, path);
     let resp = await fetch(url);
@@ -30,13 +36,13 @@ export default class {
       return null;
     }
 
-    await wait((Math.random() * 1000));
+    if (this.wait) {
+      await this.pause((Math.random() * 1000));
+    }
 
     return await resp.json();
   }
 
 }
 
-function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+export default new UserService();

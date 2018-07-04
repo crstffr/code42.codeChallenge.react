@@ -1,14 +1,18 @@
 import React from 'react';
-import {List} from 'semantic-ui-react';
+import {Grid, Header, List} from 'semantic-ui-react';
 import UserExplorerListItem from './UserExplorerListItem';
 
 export default ({users}) => {
 
   if (!users.length) {
     return (
-      <div>
-        No Users Found
-      </div>
+      <Grid>
+        <Grid.Column verticalAlign='middle' textAlign='center'>
+          <Header as='h4' icon textAlign='center'>
+            <Header.Content>No Users Found</Header.Content>
+          </Header>
+        </Grid.Column>
+      </Grid>
     )
   }
 

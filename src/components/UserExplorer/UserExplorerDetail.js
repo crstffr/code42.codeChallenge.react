@@ -5,7 +5,7 @@ import Utils from '../../utils/utils';
 
 export default ({user}) => {
 
-  if (!user.name) {
+  if (!user.login) {
     return (
       <Grid>
         <Grid.Column verticalAlign='middle' textAlign='center'>
@@ -36,11 +36,12 @@ export default ({user}) => {
 
   return (
     <Item.Group>
+
       <Item>
         <Item.Image as={Image} src={user.avatar_url} size='small' rounded bordered />
         <Item.Content>
           <Item.Header as='h2'>
-            <a href={user.html_url}>{user.name}</a>
+            <a href={user.html_url}>{user.name || user.login}</a>
           </Item.Header>
           <Item.Meta>
             Member Since: {Utils.formatDate(user.created_at)}
@@ -49,6 +50,7 @@ export default ({user}) => {
           {location}
         </Item.Content>
       </Item>
+
       <Item>
         <Item.Content>
           <Message>
@@ -71,7 +73,7 @@ export default ({user}) => {
       </Item>
 
       <List divided relaxed='very'>
-      {repos}
+        {repos}
       </List>
     </Item.Group>
   )

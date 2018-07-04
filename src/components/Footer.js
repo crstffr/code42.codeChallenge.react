@@ -6,7 +6,8 @@ export default () => (
     <Grid.Column width={12} textAlign='left'>
       <List horizontal size='tiny'>
         <List.Item>
-          Built by <a href='https://crstffr.format.com' target='_blank'>Christopher Mason</a> using React 16 and Semantic UI
+          Built by <a rel='noopener noreferrer' target='_blank'
+                      href='https://crstffr.format.com'>Christopher Mason</a> using React 16 and Semantic UI
         </List.Item>
       </List>
     </Grid.Column>
