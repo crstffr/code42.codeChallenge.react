@@ -1,10 +1,10 @@
 ## Code42 Senior Web Engineer Excercise
 
 This repo contains an application that explores GitHub users from a few different 
-organizations. This app was built using [React](A) and [Semantic UI](B), starting with the 
-[create-react-app](C) scaffold utility.
+organizations. This app was built using [React][A] and [Semantic UI][B], starting with the 
+[create-react-app][C] scaffold utility.
 
-You can find a live version of this app running at [https://cmc42.now.sh](D)
+You can find a live version of this app running at [https://cmc42.now.sh][D]
 
 The data is pulled from the public REST Github API v3 and is rate-limited. All requests are 
 also capped at 30 results, with no pagination implemented at this point. 
@@ -51,9 +51,9 @@ Publish the last deployment to [https://cmc42.now.sh/](D)
 npm run publish
 ```
 
-[A]:(https://reactjs.org/)
-[B]:(https://semantic-ui.com/)
-[C]:(https://github.com/facebook/create-react-app)
-[D]:(https://cmc42.now.sh/)
+[A]: https://reactjs.org/
+[B]: https://semantic-ui.com/
+[C]: https://github.com/facebook/create-react-app
+[D]: https://cmc42.now.sh/
 
 
